@@ -25,7 +25,8 @@ def display_menu():
     print("16. Country by IP")
     print("17. Network and Computer Unit Converter")
     print("18. Run Exploit")
-    print("19. Exit")
+    print("19. Network Scanner")  # Option for Network Scanner
+    print("20. Exit")
 
 def print_header():
     header = """

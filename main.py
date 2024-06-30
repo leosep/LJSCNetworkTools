@@ -3,6 +3,7 @@
 from scanner.port_scanner import PortScanner
 from utils.menu import display_menu, clear_screen, pause
 from tools import ping, traceroute, dns_lookup, whois_lookup, port_check, reverse_lookup, proxy_checker, bandwidth_meter, network_calculator, network_mask_calculator, country_by_ip, unit_converter, exploit_runner
+from tools import network_scanner 
 
 def main():
     while True:
@@ -89,12 +90,22 @@ def main():
         elif choice == "18":
             exploit_runner.run_exploit()
             pause()
-        elif choice == "19":
-            print("Exiting...")
-            break
+        elif choice == '19':
+            start_ip = input("Enter start IP address (e.g., 10.0.0.1): ")
+            end_ip = input("Enter end IP address (e.g., 10.0.0.255): ")
+            try:
+                network_scanner.scan_network(start_ip, end_ip)
+                pause()
+            except KeyboardInterrupt:
+                print("\nScan cancelled. Returning to main menu.")
+                if os.path.isfile('cancel.txt'):
+                    os.remove('cancel.txt')
+                clear_screen()
+        elif choice == '20':
+            print("Exiting LJSC. Goodbye!")
+            exit()
         else:
-            print("Invalid option, please try again.")
-            pause()
+            print("Invalid choice. Please select a valid option.")
 
 if __name__ == "__main__":
     main()
